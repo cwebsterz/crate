@@ -17,6 +17,7 @@ const ViewWishlistAlbum = () => {
           </div>
           <div className="f4">
             <img
+              alt="Logo"
               className="h3 w3"
               src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2Fcratelogo.svg?1501867486368"
             />
@@ -28,6 +29,7 @@ const ViewWishlistAlbum = () => {
         <article className="db center mw5 tc black grow">
           <div className="tc mt2">
             <img
+              alt="Album cover"
               className="db ba b--black-10"
               src="https://s3-us-west-1.amazonaws.com/tachyonsio/img/Blonde-Frank_Ocean.jpeg"
             />

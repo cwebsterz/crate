@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { List, ListItem, Button, TextField } from 'jrs-react-components'
+import { Button, TextField } from 'jrs-react-components'
 
 const MapPage = () => {
   return (
@@ -14,6 +14,7 @@ const MapPage = () => {
           </div>
           <div className="f4">
             <img
+              alt="Logo"
               className="h3 w3"
               src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2Fcratelogo.svg?1501867486368"
             />
@@ -26,6 +27,7 @@ const MapPage = () => {
         <article className="db center mw5 tc black">
           <div className="tc mt2">
             <img
+              alt="Map Placeholder"
               className="db ba bw2 b--black-60"
               src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2FScreen%20Shot%202017-08-08%20at%2011.23.06%20AM.png?1502205843095"
             />

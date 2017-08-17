@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { List, ListItem, Button } from 'jrs-react-components'
 
 const HomePage = () => {
   return (
@@ -27,6 +26,7 @@ const HomePage = () => {
         <article className="db center mw5 tc grow">
           <div className="tc mt2">
             <img
+              alt="Logo"
               className="db"
               src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2Fcratelogo.svg?1501867486368"
             />
