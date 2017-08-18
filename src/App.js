@@ -41,9 +41,9 @@ const App = function(props) {
             path="/pages/view-wishlist-album/:id"
             component={ViewWishlistAlbum}
           />
-          <Route path="/pages/view-profile/:id" component={ViewProfile} />
+          <Route path="/pages/view-profile" component={ViewProfile} />
           <Route path="/pages/search-albums" component={SearchAlbums} />
-          <Route path="/pages/map" component={MapPage} />
+          <Route path="/pages/local-map" component={MapPage} />
         </Switch>
       </div>
     </BrowserRouter>

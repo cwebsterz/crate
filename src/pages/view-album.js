@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { List, Button } from 'jrs-react-components'
-import { getAlbum } from '../db'
+import { getAlbum, deleteAlbum } from '../db'
 
 class ViewAlbum extends React.Component {
   componentDidMount() {
@@ -42,31 +42,36 @@ class ViewAlbum extends React.Component {
               <img
                 alt="Album cover"
                 className="db ba b--black-10"
-                src={props.crate.photo}
+                src={props.album.photo}
               />
             </div>
           </article>
           <h4 className="tc">
-            {props.crate.title}
+            {props.album.title}
           </h4>
 
           <List className="center w-90 ba br2 b--light-gray tc">
             <li className="h2 bg-light-gray">
-              {props.crate.artist}
+              {props.album.artist}
             </li>
             <li>
-              {props.crate.year}
+              {props.album.year}
             </li>
             <li className="h2 bg-light-gray">
-              {props.crate.genre}
+              {props.album.genre}
             </li>
             <li>
-              {props.crate.desc}
+              {props.album.desc}
             </li>
           </List>
 
           <div className="center w-90">
-            <Button className="w-100 bg-red ba br2 ">Remove</Button>
+            <Button
+              onClick={props.handleClick(props.history)}
+              className="w-100 bg-red ba br2 "
+            >
+              Remove
+            </Button>
           </div>
         </main>
       </div>
@@ -74,11 +79,22 @@ class ViewAlbum extends React.Component {
   }
 }
 
-const connector = connect(mapStateToProps)
+const connector = connect(mapStateToProps, mapActionsToProps)
 
 function mapStateToProps(state) {
   return {
-    crate: state.crate
+    album: state.album
+  }
+}
+
+function mapActionsToProps(dispatch) {
+  return {
+    dispatch: dispatch,
+    handleClick: history => e => {
+      window.confirm('Are you sure?')
+        ? dispatch(deleteAlbum(history))
+        : console.log('Did no delete item.')
+    }
   }
 }
 

@@ -81,6 +81,7 @@ class ListAlbums extends React.Component {
 const connector = connect(mapStateToProps)
 
 function mapStateToProps(state) {
+  console.log('state: ', state)
   return {
     crate: state.crate
   }

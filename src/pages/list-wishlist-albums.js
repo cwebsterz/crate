@@ -81,6 +81,7 @@ function li(albums) {
   return (
     <a
       href={`/pages/view-wishlist-album/${albums._id}`}
+      key={albums._id}
       className="db grow tc link"
     >
       <img alt="" src={albums.photo} className="w-100 db outline black-10" />

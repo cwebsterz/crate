@@ -7,7 +7,10 @@ const CreateWishlistAlbum = () => {
     <div className="flex flex-column justify-start w-100">
       <header className="h3 flex justify-between items-center bg-black-30">
         <div className="ml3">
-          <Link className="link hover-white black-60" to="#">
+          <Link
+            className="link hover-white black-60"
+            to="/pages/list-wishlist-albums"
+          >
             <i className="db tc ion-close" />
           </Link>
         </div>
