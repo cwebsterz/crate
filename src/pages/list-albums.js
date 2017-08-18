@@ -6,9 +6,7 @@ import { listAlbums } from '../db'
 
 class ListAlbums extends React.Component {
   componentDidMount() {
-    if (this.props.session) {
-      this.props.dispatch(listAlbums)
-    }
+    this.props.dispatch(listAlbums)
   }
 
   render() {
@@ -41,9 +39,14 @@ class ListAlbums extends React.Component {
         </header>
         <main>
           <h4>My Crate</h4>
-          <div>
-            {map(li, this.props.crate)}
-          </div>
+
+          <article>
+            <div className="cf avenir pa2">
+              <div className="fl w-50 w-25-m w-20-l pa2">
+                {map(li, this.props.crate)}
+              </div>
+            </div>
+          </article>
         </main>
         <footer className="h3 flex flex-row justify-between items-center bg-black-30">
           <div className="ml3">
@@ -87,28 +90,18 @@ export default connector(ListAlbums)
 
 function li(albums) {
   return (
-    <article>
-      <div className="cf avenir pa2">
-        <div className="fl w-50 w-25-m w-20-l pa2">
-          <a className="db grow tc">
-            <img
-              alt=""
-              src={albums.photo}
-              className="w-100 db outline black-10"
-            />
-            <dl className="mt2 f6 lh-copy">
-              <dt className="clip">Title</dt>
-              <dd className="ml0 black truncate w-100">
-                {albums.title}
-              </dd>
-              <dt className="clip">Artist</dt>
-              <dd className="ml0 gray truncate w-100">
-                {albums.artist}
-              </dd>
-            </dl>
-          </a>
-        </div>
-      </div>
-    </article>
+    <a href={`/view-album/${albums._id}`} className="db grow tc link">
+      <img alt="" src={albums.photo} className="w-100 db outline black-10" />
+      <dl className="mt2 f6 lh-copy">
+        <dt className="clip">Title</dt>
+        <dd className="ml0 black truncate w-100">
+          {albums.title}
+        </dd>
+        <dt className="clip">Artist</dt>
+        <dd className="ml0 gray truncate w-100">
+          {albums.artist}
+        </dd>
+      </dl>
+    </a>
   )
 }

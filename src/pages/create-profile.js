@@ -1,6 +1,9 @@
-import React from 'react'
+{
+  /*import React from 'react'
 import { Link } from 'react-router-dom'
 import { TextField, Button } from 'jrs-react-components'
+import { connect } from 'react-redux'
+import { toUpper, compose, path, head, pathOr } from 'ramda'
 
 const CreateProfile = () => {
   return (
@@ -20,13 +23,41 @@ const CreateProfile = () => {
         </div>
         <div className="mr3" />
       </header>
+
       <main className="overflow-scroll">
         <h4>Sign Up</h4>
         <form className="ph2">
-          <TextField name="First" value="Cullen" />
-          <TextField name="Last" value="Webster" />
-          <TextField name="Age" value="23" />
-          <TextField name="Location (optional)" value="Charleston, SC" />
+          <TextField
+            value={props.profile.firstName}
+            onChange={props.setFirstName}
+            label="First Name"
+            optional={false}
+            help="Enter First Name"
+          />
+
+          <TextField
+            value={props.profile.lastName}
+            onChange={props.setLastName}
+            label="Last Name"
+            optional={false}
+            help="Enter Last Name"
+          />
+
+          <TextField
+            value={props.profile.age}
+            onChange={props.setAge}
+            label="Age"
+            optional={false}
+            help="Enter Age"
+          />
+
+          <TextField
+            value={props.profile.location}
+            onChange={props.setLocation}
+            label="Location"
+            optional={true}
+            help="Enter Location (optional)"
+          />
 
           <div className="measure mt2">
             <label className="f6 b db mb2">Photo (optional)</label>
@@ -55,4 +86,39 @@ const CreateProfile = () => {
   )
 }
 
-export default CreateProfile
+const connector = connect(mapStateToProps, mapActionsToProps)
+
+function mapStateToProps(state) {
+  return {
+    profile: state.profile
+  }
+}
+
+function mapActionsToProps(dispatch) {
+  const doDispatch = (field, value) => {
+    dispatch({
+      type: SET_PROFILE_X + toUpper(field),
+      payload: value
+    })
+  }
+  return {
+    dispatch,
+    submitProfile: (_id, history) => e => {
+      e.preventDefault()
+      if (_id) {
+        dispatch(updateProfile(history))
+      } else {
+        dispatch(createProfile(history))
+      }
+    },
+    setFirstName: e => doDispatch('FIRSTNAME', e.target.value),
+    setLastName: e => doDispatch('LASTNAME', e.target.value),
+    setAge: e => doDispatch('AGE', e.target.value),
+    setLocation: e => doDispatch('LOCATION', e.target.value)
+  }
+}
+
+
+export default connector(CreateProfile)
+*/
+}
