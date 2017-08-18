@@ -68,3 +68,27 @@ export const createAlbumFromWishlist = (album, history) => (
     .then(res => res.json())
     .then(dispatch({ type: SET_MARK_FOR_DELETE }))
 }
+
+export const createCrateAlbum = (album, history) => (dispatch, getState) => {
+  fetch(apiURL + '/crate/albums', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(album)
+  })
+    .then(res => res.json())
+    .then(data =>
+      dispatch({
+        type: SET_ALBUM,
+        payload: {
+          title: '',
+          artist: '',
+          year: '',
+          genre: '',
+          photo: '',
+          desc: ''
+        }
+      })
+    )
+}

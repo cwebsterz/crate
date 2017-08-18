@@ -18,13 +18,13 @@ class ViewWishlistAlbum extends React.Component {
   render() {
     const props = this.props
     const result = this.props.wishlistAlbum.markedForDeletion
-      ? <section className="ph3 ph5-ns pv5">
-          <article className="mw8 center br2 ba b--light-blue bg-lightest-blue">
+      ? <section className="ph3 ph5-ns pv5 avenir">
+          <article className="mw8 center br2 ba bg-black-30">
             <div className="dt-ns dt--fixed-ns w-100">
               <div className="pa3 pa4-ns dtc-ns v-mid">
                 <div>
-                  <h2 className="fw4 blue mt0 mb3">Success!</h2>
-                  <p className="black-70 measure lh-copy mv0">
+                  <h2 className="fw4 black mt0 mb3">Success!</h2>
+                  <p className="black measure lh-copy mv0">
                     Hooray, your album has been added to your Crate!
                   </p>
                 </div>
@@ -33,7 +33,7 @@ class ViewWishlistAlbum extends React.Component {
                 <Link
                   to="/pages/list-wishlist-albums"
                   onClick={props.handleClick(props.history)}
-                  className="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2"
+                  className="no-underline f6 tc db w-100 pv3 bg-animate white bg-black-60 hover-white br2"
                 >
                   Okay
                 </Link>
