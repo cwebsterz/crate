@@ -90,7 +90,11 @@ export default connector(ListAlbums)
 
 function li(albums) {
   return (
-    <a href={`/view-album/${albums._id}`} className="db grow tc link">
+    <a
+      href={`/pages/view-album/${albums._id}`}
+      key={albums._id}
+      className="db grow tc link"
+    >
       <img alt="" src={albums.photo} className="w-100 db outline black-10" />
       <dl className="mt2 f6 lh-copy">
         <dt className="clip">Title</dt>

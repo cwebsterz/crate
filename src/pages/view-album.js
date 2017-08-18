@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { List, SimpleListItem, Button } from 'jrs-react-components'
+import { List, Button } from 'jrs-react-components'
 import { getAlbum } from '../db'
 
 class ViewAlbum extends React.Component {
@@ -51,18 +51,18 @@ class ViewAlbum extends React.Component {
           </h4>
 
           <List className="center w-90 ba br2 b--light-gray tc">
-            <SimpleListItem className="h2 bg-light-gray">
+            <li className="h2 bg-light-gray">
               {props.crate.artist}
-            </SimpleListItem>
-            <SimpleListItem>
+            </li>
+            <li>
               {props.crate.year}
-            </SimpleListItem>
-            <SimpleListItem className="h2 bg-light-gray">
+            </li>
+            <li className="h2 bg-light-gray">
               {props.crate.genre}
-            </SimpleListItem>
-            <SimpleListItem>
+            </li>
+            <li>
               {props.crate.desc}
-            </SimpleListItem>
+            </li>
           </List>
 
           <div className="center w-90">

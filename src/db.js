@@ -1,5 +1,10 @@
 import fetch from 'isomorphic-fetch'
-import { SET_COLLECTION, SET_WISHLIST, SET_ALBUM } from './constants'
+import {
+  SET_COLLECTION,
+  SET_WISHLIST,
+  SET_ALBUM,
+  SET_WISHLIST_ALBUM
+} from './constants'
 
 const apiURL = 'http://localhost:5000'
 
@@ -16,7 +21,13 @@ export const listWishlistAlbums = (dispatch, getState) => {
 }
 
 export const getAlbum = id => (dispatch, getState) => {
-  fetch(apiURL + `/crate/${id}`, getState())
+  fetch(apiURL + `/crate/albums/${id}`, getState())
     .then(res => res.json())
     .then(album => dispatch({ type: SET_ALBUM, payload: album }))
+}
+
+export const getWishlistAlbum = id => (dispatch, getState) => {
+  fetch(apiURL + `/wishlist/albums/${id}`, getState())
+    .then(res => res.json())
+    .then(album => dispatch({ type: SET_WISHLIST_ALBUM, payload: album }))
 }

@@ -1,3 +1,4 @@
 export const SET_COLLECTION = 'SET_COLLECTION'
 export const SET_WISHLIST = 'SET_WISHLIST'
 export const SET_ALBUM = 'SET_ALBUM'
+export const SET_WISHLIST_ALBUM = 'SET_WISHLIST_ALBUM'

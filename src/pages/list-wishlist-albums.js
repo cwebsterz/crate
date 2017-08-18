@@ -70,7 +70,6 @@ class ListWishlistAlbums extends React.Component {
 const connector = connect(mapStateToProps)
 
 function mapStateToProps(state) {
-  console.log('state: ', state)
   return {
     wishlist: state.wishlist
   }
@@ -80,7 +79,10 @@ export default connector(ListWishlistAlbums)
 
 function li(albums) {
   return (
-    <a href={`/view-wishlist-album/${albums._id}`} className="db grow tc link">
+    <a
+      href={`/pages/view-wishlist-album/${albums._id}`}
+      className="db grow tc link"
+    >
       <img alt="" src={albums.photo} className="w-100 db outline black-10" />
       <dl className="mt2 f6 lh-copy">
         <dt className="clip">Title</dt>

@@ -36,12 +36,12 @@ const App = function(props) {
             component={CreateWishlistAlbum}
           />
           <Route path="/pages/create-profile" component={CreateProfile} />
-          <Route path="/pages/view-album" component={ViewAlbum} />
+          <Route path="/pages/view-album/:id" component={ViewAlbum} />
           <Route
-            path="/pages/view-wishlist-album"
+            path="/pages/view-wishlist-album/:id"
             component={ViewWishlistAlbum}
           />
-          <Route path="/pages/view-profile" component={ViewProfile} />
+          <Route path="/pages/view-profile/:id" component={ViewProfile} />
           <Route path="/pages/search-albums" component={SearchAlbums} />
           <Route path="/pages/map" component={MapPage} />
         </Switch>
