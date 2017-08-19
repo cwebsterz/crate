@@ -25,24 +25,20 @@ const App = function(props) {
           <Route exact path="/" component={HomePage} />
           <Route path="/pages/about" component={AboutPage} />
           <Route path="/pages/search-albums" component={SearchAlbums} />
-          <Route path="/pages/list-albums" component={ListAlbums} />
+          <Route path="/pages/crate/albums" component={ListAlbums} />
+          <Route path="/pages/wishlist/albums" component={ListWishlistAlbums} />
+          <Route path="/pages/crate/new-album" component={CreateAlbum} />
           <Route
-            path="/pages/list-wishlist-albums"
-            component={ListWishlistAlbums}
-          />
-          <Route path="/pages/create-album" component={CreateAlbum} />
-          <Route
-            path="/pages/create-wishlist-album"
+            path="/pages/wishlist/new-album"
             component={CreateWishlistAlbum}
           />
           <Route path="/pages/create-profile" component={CreateProfile} />
-          <Route path="/pages/view-album/:id" component={ViewAlbum} />
+          <Route path="/pages/crate/album/:id" component={ViewAlbum} />
           <Route
-            path="/pages/view-wishlist-album/:id"
+            path="/pages/wishlist/album/:id"
             component={ViewWishlistAlbum}
           />
           <Route path="/pages/view-profile" component={ViewProfile} />
-          <Route path="/pages/search-albums" component={SearchAlbums} />
           <Route path="/pages/local-map" component={MapPage} />
         </Switch>
       </div>

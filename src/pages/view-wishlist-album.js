@@ -11,7 +11,6 @@ import {
 class ViewWishlistAlbum extends React.Component {
   componentDidMount() {
     const albumId = this.props.match.params.id
-    console.log('id: ', this.props.match.params.id)
     this.props.dispatch(getWishlistAlbum(albumId))
   }
 
@@ -122,7 +121,7 @@ function mapStateToProps(state) {
 
 function mapActionsToProps(dispatch) {
   return {
-    dispatch: dispatch,
+    dispatch,
     handleMove: (album, history) => e =>
       dispatch(createAlbumFromWishlist(album, history)),
     handleClick: history => e => {

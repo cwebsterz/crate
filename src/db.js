@@ -92,4 +92,34 @@ export const createCrateAlbum = (album, history) => (dispatch, getState) => {
         }
       })
     )
+    .then(() => history.push('/pages/list-albums'))
+}
+
+export const createWishlistAlbum = (wishlistAlbum, history) => (
+  dispatch,
+  getState
+) => {
+  console.log('thunk album: ', wishlistAlbum)
+  fetch(apiURL + '/wishlist/albums', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(wishlistAlbum)
+  })
+    .then(res => res.json())
+    .then(data =>
+      dispatch({
+        type: SET_WISHLIST_ALBUM,
+        payload: {
+          title: '',
+          artist: '',
+          year: '',
+          genre: '',
+          photo: '',
+          desc: ''
+        }
+      })
+    )
+    .then(() => history.push('/pages/list-wishlist-albums'))
 }

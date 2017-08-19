@@ -33,7 +33,10 @@ class CreateAlbum extends React.Component {
         <main className="overflow-scroll">
           <h4>Add Album to Crate</h4>
 
-          <form className="ph2" onSubmit={props.handleSubmit(props.history)}>
+          <form
+            className="ph2"
+            onSubmit={props.handleSubmit(props.album, props.history)}
+          >
             <TextField
               label="Title"
               value={props.title}
@@ -72,7 +75,7 @@ class CreateAlbum extends React.Component {
 
             <div>
               <Button className="w-100 bg-black white ba br2">
-                Save Album
+                Add to Crate
               </Button>
             </div>
           </form>
@@ -87,6 +90,7 @@ const connector = connect(mapStateToProps, mapActionsToProps)
 function mapStateToProps(state) {
   console.log('state: ', state)
   return {
+    album: state.album,
     title: state.album.title,
     artist: state.album.artist,
     year: state.album.year,
