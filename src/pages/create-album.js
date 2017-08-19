@@ -3,14 +3,8 @@ import { Link } from 'react-router-dom'
 import { TextField, Button } from 'jrs-react-components'
 import { connect } from 'react-redux'
 import { createCrateAlbum } from '../db'
-import {
-  SET_ALBUM_TITLE,
-  SET_ALBUM_ARTIST,
-  SET_ALBUM_YEAR,
-  SET_ALBUM_GENRE,
-  SET_ALBUM_DESC,
-  SET_ALBUM_PHOTO
-} from '../constants'
+import { SET_ALBUM_X } from '../constants'
+import { toUpper } from 'ramda'
 
 const CreateAlbum = props => {
   return (
@@ -71,9 +65,7 @@ const CreateAlbum = props => {
           </div>
 
           <div>
-            <Button className="w-100 bg-black white ba br2 tc">
-              Save Album
-            </Button>
+            <Button className="w-100 bg-black white ba br2">Save Album</Button>
           </div>
         </form>
       </main>
@@ -84,6 +76,7 @@ const CreateAlbum = props => {
 const connector = connect(mapStateToProps, mapActionsToProps)
 
 function mapStateToProps(state) {
+  console.log('state: ', state)
   return {
     title: state.album.title,
     artist: state.album.artist,
@@ -95,19 +88,24 @@ function mapStateToProps(state) {
 }
 
 function mapActionsToProps(dispatch) {
+  const doDispatch = (field, value) => {
+    dispatch({
+      type: SET_ALBUM_X + toUpper(field),
+      payload: value
+    })
+  }
   return {
     dispatch,
     handleSubmit: history => e => {
       e.preventDefault()
       dispatch(createCrateAlbum(history))
     },
-    setTitle: e => dispatch({ type: SET_ALBUM_TITLE, payload: e.target.value }),
-    setArtist: e =>
-      dispatch({ type: SET_ALBUM_ARTIST, payload: e.target.value }),
-    setYear: e => dispatch({ type: SET_ALBUM_YEAR, payload: e.target.value }),
-    setGenre: e => dispatch({ type: SET_ALBUM_GENRE, payload: e.target.value }),
-    setDesc: e => dispatch({ type: SET_ALBUM_DESC, payload: e.target.value }),
-    setPhoto: e => dispatch({ type: SET_ALBUM_PHOTO, payload: e.target.value })
+    setTitle: e => doDispatch('TITLE', e.target.value),
+    setArtist: e => doDispatch('ARTIST', e.target.value),
+    setYear: e => doDispatch('YEAR', e.target.value),
+    setGenre: e => doDispatch('GENRE', e.target.value),
+    setDesc: e => doDispatch('DESC', e.target.value),
+    setPhoto: e => doDispatch('PHOTO', e.target.value)
   }
 }
 

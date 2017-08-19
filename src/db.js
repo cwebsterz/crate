@@ -70,6 +70,7 @@ export const createAlbumFromWishlist = (album, history) => (
 }
 
 export const createCrateAlbum = (album, history) => (dispatch, getState) => {
+  console.log('thunk album: ', album)
   fetch(apiURL + '/crate/albums', {
     method: 'POST',
     headers: {

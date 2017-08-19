@@ -32,13 +32,13 @@ const HomePage = () => {
             />
           </div>
         </article>
-        <h4 className="tc">crate</h4>
+        <h4 className="tc">Crate</h4>
 
         <div className="pa3">
-          "You cant always have your vinyl collection with you, but having a way
+          You can't always have your vinyl collection with you, but having a way
           to access it anywhere, anytime is a must for any vinyl enthusiast. If
-          youre shopping for your collection, you'll need to know what you
-          already have and what you're looking for."
+          you're shopping for your collection, you'll need to know what you
+          already have and what you're looking for. Happy collecting!
         </div>
       </main>
     </div>

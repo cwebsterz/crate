@@ -1,13 +1,4 @@
-import {
-  SET_ALBUM,
-  CLEAR_ALBUM,
-  SET_ALBUM_TITLE,
-  SET_ALBUM_YEAR,
-  SET_ALBUM_ARTIST,
-  SET_ALBUM_GENRE,
-  SET_ALBUM_PHOTO,
-  SET_ALBUM_DESC
-} from '../constants'
+import { SET_ALBUM, CLEAR_ALBUM, SET_ALBUM_X } from '../constants'
 import { merge } from 'ramda'
 
 const initialState = {
@@ -23,18 +14,18 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_ALBUM:
       return action.payload
-    case SET_ALBUM_TITLE:
-      return merge(state, action.payload)
-    case SET_ALBUM_ARTIST:
-      return merge(state, action.payload)
-    case SET_ALBUM_YEAR:
-      return merge(state, action.payload)
-    case SET_ALBUM_GENRE:
-      return merge(state, action.payload)
-    case SET_ALBUM_PHOTO:
-      return merge(state, action.payload)
-    case SET_ALBUM_DESC:
-      return merge(state, action.payload)
+    case SET_ALBUM_X + 'TITLE':
+      return merge(state, { title: action.payload })
+    case SET_ALBUM_X + 'ARTIST':
+      return merge(state, { artist: action.payload })
+    case SET_ALBUM_X + 'YEAR':
+      return merge(state, { year: action.payload })
+    case SET_ALBUM_X + 'GENRE':
+      return merge(state, { genre: action.payload })
+    case SET_ALBUM_X + 'PHOTO':
+      return merge(state, { photo: action.payload })
+    case SET_ALBUM_X + 'DESC':
+      return merge(state, { desc: action.payload })
     case CLEAR_ALBUM:
       return initialState
     default:
