@@ -13,7 +13,10 @@ class CreateAlbum extends React.Component {
       <div className="flex flex-column justify-start w-100">
         <header className="h3 flex justify-between items-center bg-black-30">
           <div className="ml3">
-            <Link className="link hover-white black-60" to="/pages/list-albums">
+            <Link
+              className="link hover-white black-60"
+              to="/pages/crate/albums"
+            >
               <i className="db tc ion-close" />
             </Link>
           </div>

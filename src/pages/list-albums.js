@@ -31,7 +31,7 @@ class ListAlbums extends React.Component {
           <div className="mr3">
             <Link
               className="link hover-white black-60"
-              to="/pages/create-album"
+              to="/pages/crate/new-album"
             >
               <i className="db tc black-60 hover-white ion-plus-circled" />
             </Link>
@@ -52,7 +52,7 @@ class ListAlbums extends React.Component {
           <div className="ml3">
             <Link
               className="link black-60 hover-white"
-              to="/pages/list-wishlist-albums"
+              to="/pages/wishlist/albums"
             >
               <i className="db tc black-60 hover-white ion-ios-paper" />
             </Link>

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
     "ionicons": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
     "jrs-react-components": "^2.1.3",

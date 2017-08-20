@@ -26,7 +26,7 @@ class ListWishlistAlbums extends React.Component {
             />
           </div>
           <div className="mr3">
-            <Link className="link" to="/pages/create-wishlist-album">
+            <Link className="link" to="/pages/wishlist/new-album">
               <i className="db tc black-60 hover-white ion-plus-circled" />
             </Link>
           </div>
@@ -44,7 +44,10 @@ class ListWishlistAlbums extends React.Component {
         </main>
         <footer className="h3 flex flex-row justify-between items-center bg-black-30">
           <div className="ml3">
-            <Link className="link black-60 hover-white" to="/pages/list-albums">
+            <Link
+              className="link black-60 hover-white"
+              to="/pages/crate/albums"
+            >
               <i className="db tc black-60 hover-white ion-disc" />
             </Link>
           </div>

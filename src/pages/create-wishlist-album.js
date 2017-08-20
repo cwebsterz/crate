@@ -15,7 +15,7 @@ class CreateWishlistAlbum extends React.Component {
           <div className="ml3">
             <Link
               className="link hover-white black-60"
-              to="/pages/list-wishlist-albums"
+              to="/pages/wishlist/albums"
             >
               <i className="db tc ion-close" />
             </Link>

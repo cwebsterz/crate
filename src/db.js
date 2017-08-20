@@ -6,7 +6,8 @@ import {
   SET_WISHLIST_ALBUM,
   CLEAR_ALBUM,
   CLEAR_WISHLIST_ALBUM,
-  SET_MARK_FOR_DELETE
+  SET_MARK_FOR_DELETE,
+  SEARCH_RESULTS
 } from './constants'
 import { omit } from 'ramda'
 
@@ -41,7 +42,7 @@ export const deleteAlbum = history => (dispatch, getState) => {
   fetch(apiURL + `/crate/albums/` + album._id, { method: 'DELETE' })
     .then(res => res.json())
     .then(dispatch({ type: CLEAR_ALBUM }))
-    .then(() => history.push('/pages/list-albums'))
+    .then(() => history.push('/pages/crate/albums'))
 }
 
 export const deleteWishlistAlbum = history => (dispatch, getState) => {
@@ -49,7 +50,7 @@ export const deleteWishlistAlbum = history => (dispatch, getState) => {
   fetch(apiURL + `/wishlist/albums/` + wishlistAlbum._id, { method: 'DELETE' })
     .then(res => res.json())
     .then(dispatch({ type: CLEAR_WISHLIST_ALBUM }))
-    .then(() => history.push('/pages/list-wishlist-albums'))
+    .then(() => history.push('/pages/wishlist/albums'))
 }
 
 export const createAlbumFromWishlist = (album, history) => (
@@ -92,7 +93,7 @@ export const createCrateAlbum = (album, history) => (dispatch, getState) => {
         }
       })
     )
-    .then(() => history.push('/pages/list-albums'))
+    .then(() => history.push('/pages/crate/albums'))
 }
 
 export const createWishlistAlbum = (wishlistAlbum, history) => (
@@ -121,5 +122,11 @@ export const createWishlistAlbum = (wishlistAlbum, history) => (
         }
       })
     )
-    .then(() => history.push('/pages/list-wishlist-albums'))
+    .then(() => history.push('/pages/wishlist/albums'))
+}
+
+export const searchInput = criteria => dispatch => {
+  fetch(apiURL + `/search?text=${criteria}`)
+    .then(res => res.json())
+    .then(data => dispatch({ type: SEARCH_RESULTS, payload: data }))
 }

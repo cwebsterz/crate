@@ -20,7 +20,7 @@ class ViewAlbum extends React.Component {
             <div className="ml3">
               <Link
                 className="link black-60 hover-white"
-                to="/pages/list-albums"
+                to="/pages/crate/albums"
               >
                 <i className="db tc black-60 hover-white ion-chevron-left" />
               </Link>
