@@ -125,8 +125,9 @@ export const createWishlistAlbum = (wishlistAlbum, history) => (
     .then(() => history.push('/pages/wishlist/albums'))
 }
 
-export const searchInput = criteria => dispatch => {
-  fetch(apiURL + `/search?text=${criteria}`)
+export const searchInput = searchAlbum => dispatch => {
+  console.log('searchAlbum: ', searchAlbum)
+  fetch(apiURL + `/search/${searchAlbum}`)
     .then(res => res.json())
     .then(data => dispatch({ type: SEARCH_RESULTS, payload: data }))
 }

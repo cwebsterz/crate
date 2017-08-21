@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, TextField, Button } from 'jrs-react-components'
+import { List, TextField, Button, ImageListItem } from 'jrs-react-components'
 import { connect } from 'react-redux'
 import { searchInput } from '../db'
 import { SEARCH_TEXT } from '../constants'
@@ -26,7 +26,10 @@ class SearchAlbums extends React.Component {
         <main className="overflow-scroll">
           <h4 className="tc">Album Search</h4>
 
-          <form className="ph2" onSubmit={props.handleSubmit(props.criteria)}>
+          <form
+            className="ph2"
+            onSubmit={props.handleSubmit(props.searchAlbum)}
+          >
             <TextField
               value={props.searchAlbum}
               onChange={props.setSearchText}
@@ -52,6 +55,7 @@ const connector = connect(mapStateToProps, mapActionsToProps)
 
 function mapStateToProps(state) {
   console.log('state: ', state)
+  console.log('searchResults: ', state.search.searchResults)
   return {
     search: state.search,
     searchAlbum: state.search.searchAlbum,
@@ -62,33 +66,27 @@ function mapStateToProps(state) {
 function mapActionsToProps(dispatch) {
   return {
     dispatch,
-    handleSubmit: criteria => {
-      console.log('criteria: ', criteria)
-      dispatch(searchInput(criteria))
+    handleSubmit: searchAlbum => e => {
+      e.preventDefault()
+      dispatch(searchInput(searchAlbum))
     },
     setSearchText: e => dispatch({ type: SEARCH_TEXT, payload: e.target.value })
   }
 }
 
-function li(albums) {
+const li = albums => {
   return (
-    <a
-      href={`/pages/view-album/${albums._id}`}
-      key={albums._id}
-      className="db grow tc link"
-    >
-      <img alt="" src={albums.photo} className="w-100 db outline black-10" />
-      <dl className="mt2 f6 lh-copy">
-        <dt className="clip">Title</dt>
-        <dd className="ml0 black truncate w-100">
-          {albums.title}
-        </dd>
-        <dt className="clip">Artist</dt>
-        <dd className="ml0 gray truncate w-100">
-          {albums.artist}
-        </dd>
-      </dl>
-    </a>
+    <ImageListItem
+      key={albums.id}
+      id={albums.id}
+      title={albums.name}
+      image={albums.thumb}
+      /*link={
+          <Button onClick={props.showDetails(props.history, albums)}>
+            Select
+          </Button>
+        }*/
+    />
   )
 }
 

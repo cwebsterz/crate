@@ -26,10 +26,9 @@ const MapPage = () => {
       <main className="vh-100">
         <article className="db center mw5 tc black">
           <div className="tc mt2">
-            <img
-              alt="Map Placeholder"
-              className="db ba bw2 b--black-60"
-              src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2FScreen%20Shot%202017-08-08%20at%2011.23.06%20AM.png?1502205843095"
+            <script
+              type="map"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBziKoaVqh0dPEpnFwf_f-HDG8worH7e98&q=Space+Needle,Seattle+WA"
             />
           </div>
         </article>
