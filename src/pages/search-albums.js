@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { searchInput } from '../db'
 import { SEARCH_TEXT } from '../constants'
 import { map } from 'ramda'
+import { Link } from 'react-router-dom'
 
 class SearchAlbums extends React.Component {
   render() {
@@ -12,7 +13,12 @@ class SearchAlbums extends React.Component {
       <div className="flex flex-column justify-start w-100">
         <header className="h3 flex justify-between items-center bg-black-30">
           <div className="ml3">
-            <i className="db tc hover-white ion-close" />
+            <Link
+              className="link hover-white black-60"
+              to={`/pages/profiles/${this.props.currentUser.profileId}/crate`}
+            >
+              <i className="db tc hover-white ion-close" />
+            </Link>
           </div>
           <div className="f4">
             <img
@@ -43,7 +49,7 @@ class SearchAlbums extends React.Component {
           </form>
 
           <List>
-            {map(li, props.searchResults)}
+            {map(li(props), props.searchResults)}
           </List>
         </main>
       </div>
@@ -55,11 +61,12 @@ const connector = connect(mapStateToProps, mapActionsToProps)
 
 function mapStateToProps(state) {
   console.log('state: ', state)
-  console.log('searchResults: ', state.search.searchResults)
+  console.log('state.search.searchResults.results', state.search.searchResults)
   return {
     search: state.search,
     searchAlbum: state.search.searchAlbum,
-    searchResults: state.search.searchResults
+    searchResults: state.search.searchResults,
+    currentUser: state.currentUser
   }
 }
 
@@ -74,19 +81,39 @@ function mapActionsToProps(dispatch) {
   }
 }
 
-const li = albums => {
+const li = props => album => {
   return (
-    <ImageListItem
-      key={albums.id}
-      id={albums.id}
-      title={albums.name}
-      image={albums.thumb}
-      /*link={
-          <Button onClick={props.showDetails(props.history, albums)}>
-            Select
-          </Button>
-        }*/
-    />
+    <article className="dt w-100 bb b--black-05 pb2 pa3 mt2" href="#0">
+      <div className="dtc w3 w4-ns v-mid">
+        <img
+          src={album.thumb}
+          className="ba b--black-10 db br2 w3 w4-ns h3 h4-ns"
+        />
+      </div>
+      <div className="dtc v-mid pl3">
+        <h1 className="f6 f5-ns fw6 lh-title black mv0">
+          {album.name}
+        </h1>
+      </div>
+      <div className="dtc v-mid">
+        <div>
+          <button
+            className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+            onClick={e => e}
+          >
+            + Wishlist
+          </button>
+        </div>
+        <div>
+          <button
+            className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
+            onClick={e => e}
+          >
+            + Crate
+          </button>
+        </div>
+      </div>
+    </article>
   )
 }
 

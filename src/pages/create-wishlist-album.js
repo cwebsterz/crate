@@ -15,22 +15,25 @@ class CreateWishlistAlbum extends React.Component {
           <div className="ml3">
             <Link
               className="link hover-white black-60"
-              to="/pages/wishlist/albums"
+              to={`/pages/profiles/${this.props.currentUser
+                .profileId}/wishlist`}
             >
               <i className="db tc ion-close" />
             </Link>
           </div>
           <div className="f4">
-            <Link to="/pages/view-profile">
-              <img
-                alt="Logo"
-                className="h3 w3"
-                src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2Fcratelogo.svg?1501867486368"
-              />
-            </Link>
+            <img
+              alt="Logo"
+              className="h3 w3"
+              src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2Fcratelogo.svg?1501867486368"
+            />
           </div>
           <div className="mr3">
-            <Link to="/pages/search-albums">
+            <Link
+              className="link hover-white black-60"
+              to={`/pages/profiles/${this.props.currentUser
+                .profileId}/search-albums`}
+            >
               <i className="db tc black-60 hover-white ion-search" />
             </Link>
           </div>
@@ -100,7 +103,8 @@ function mapStateToProps(state) {
     year: state.wishlistAlbum.year,
     genre: state.wishlistAlbum.genre,
     desc: state.wishlistAlbum.desc,
-    photo: state.wishlistAlbum.photo
+    photo: state.wishlistAlbum.photo,
+    currentUser: state.currentUser
   }
 }
 
@@ -114,6 +118,7 @@ function mapActionsToProps(dispatch) {
   return {
     dispatch,
     handleSubmit: (wishlistAlbum, history) => e => {
+      e.preventDefault()
       dispatch(createWishlistAlbum(wishlistAlbum, history))
     },
     setTitle: e => doDispatch('TITLE', e.target.value),

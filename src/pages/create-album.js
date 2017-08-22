@@ -15,7 +15,7 @@ class CreateAlbum extends React.Component {
           <div className="ml3">
             <Link
               className="link hover-white black-60"
-              to="/pages/crate/albums"
+              to={`/pages/profiles/${this.props.currentUser.profileId}/crate`}
             >
               <i className="db tc ion-close" />
             </Link>
@@ -28,7 +28,11 @@ class CreateAlbum extends React.Component {
             />
           </div>
           <div className="mr3">
-            <Link to="/pages/search-albums">
+            <Link
+              className="link hover-white black-60"
+              to={`/pages/profiles/${this.props.currentUser
+                .profileId}/search-albums`}
+            >
               <i className="db tc black-60 hover-white ion-search" />
             </Link>
           </div>
@@ -99,7 +103,8 @@ function mapStateToProps(state) {
     year: state.album.year,
     genre: state.album.genre,
     desc: state.album.desc,
-    photo: state.album.photo
+    photo: state.album.photo,
+    currentUser: state.currentUser
   }
 }
 
@@ -112,8 +117,8 @@ function mapActionsToProps(dispatch) {
   }
   return {
     dispatch,
-    handleSubmit: (album, history) => e => {
-      dispatch(createCrateAlbum(album, history))
+    handleSubmit: (crateAlbum, history) => e => {
+      dispatch(createCrateAlbum(crateAlbum, history))
     },
     setTitle: e => doDispatch('TITLE', e.target.value),
     setArtist: e => doDispatch('ARTIST', e.target.value),

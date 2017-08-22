@@ -6,8 +6,7 @@ import { getAlbum, deleteAlbum } from '../db'
 
 class ViewAlbum extends React.Component {
   componentDidMount() {
-    const albumId = this.props.match.params.id
-    console.log('id: ', this.props.match.params.id)
+    const albumId = this.props.match.params.albumId
     this.props.dispatch(getAlbum(albumId))
   }
 
@@ -20,7 +19,7 @@ class ViewAlbum extends React.Component {
             <div className="ml3">
               <Link
                 className="link black-60 hover-white"
-                to="/pages/crate/albums"
+                to={`/pages/profiles/${this.props.currentUser.profileId}/crate`}
               >
                 <i className="db tc black-60 hover-white ion-chevron-left" />
               </Link>
@@ -35,35 +34,36 @@ class ViewAlbum extends React.Component {
             <div className="mr3" />
           </header>
         </div>
-
         <main className="vh-100">
-          <article className="db center mw5 tc black grow">
-            <div className="tc mt2">
-              <img
-                alt="Album cover"
-                className="db ba b--black-10"
-                src={props.album.photo}
-              />
-            </div>
-          </article>
-          <h4 className="tc">
-            {props.album.title}
-          </h4>
-
-          <List className="center w-90 ba br2 b--light-gray tc">
-            <li className="h2 bg-light-gray">
-              {props.album.artist}
-            </li>
-            <li>
-              {props.album.year}
-            </li>
-            <li className="h2 bg-light-gray">
-              {props.album.genre}
-            </li>
-            <li>
-              {props.album.desc}
-            </li>
-          </List>
+          <div className="db center mw5 tc black">
+            <img
+              className="db ba b--black-10"
+              alt="Album Cover"
+              src={props.album.photo}
+            />
+            <dl className="mt2 f6 lh-copy">
+              <dt className="clip">Title</dt>
+              <dd className="ml0">
+                {props.album.title}
+              </dd>
+              <dt className="clip">Artist</dt>
+              <dd className="ml0 gray">
+                {props.album.artist}
+              </dd>
+              <dt className="clip">Year</dt>
+              <dd className="ml0">
+                {props.album.year}
+              </dd>
+              <dt className="clip">Genre</dt>
+              <dd className="ml0 gray">
+                {props.album.genre}
+              </dd>
+              <dt className="clip">Desc</dt>
+              <dd className="ml0">
+                {props.album.desc}
+              </dd>
+            </dl>
+          </div>
 
           <div className="center w-90">
             <Button
@@ -83,7 +83,8 @@ const connector = connect(mapStateToProps, mapActionsToProps)
 
 function mapStateToProps(state) {
   return {
-    album: state.album
+    album: state.album,
+    currentUser: state.currentUser
   }
 }
 

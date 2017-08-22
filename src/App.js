@@ -24,21 +24,32 @@ const App = function(props) {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/pages/about" component={AboutPage} />
-          <Route path="/pages/search-albums" component={SearchAlbums} />
-          <Route path="/pages/crate/albums" component={ListAlbums} />
-          <Route path="/pages/wishlist/albums" component={ListWishlistAlbums} />
+          <Route
+            path="/pages/profiles/:id/search-albums"
+            component={SearchAlbums}
+          />
+          <Route
+            path="/pages/profiles/:id/crate/:albumId"
+            component={ViewAlbum}
+          />
+          <Route
+            path="/pages/profiles/:id/wishlist/:wishlistAlbumId"
+            component={ViewWishlistAlbum}
+          />
+          <Route
+            path="/pages/profiles/:id/wishlist"
+            component={ListWishlistAlbums}
+          />
+          <Route path="/pages/profiles/:id/crate" component={ListAlbums} />
+
           <Route path="/pages/crate/new-album" component={CreateAlbum} />
           <Route
             path="/pages/wishlist/new-album"
             component={CreateWishlistAlbum}
           />
           <Route path="/pages/create-profile" component={CreateProfile} />
-          <Route path="/pages/crate/album/:id" component={ViewAlbum} />
-          <Route
-            path="/pages/wishlist/album/:id"
-            component={ViewWishlistAlbum}
-          />
-          <Route path="/pages/view-profile" component={ViewProfile} />
+
+          <Route path="/pages/profiles/:id" component={ViewProfile} />
           <Route path="/pages/local-map" component={MapPage} />
         </Switch>
       </div>

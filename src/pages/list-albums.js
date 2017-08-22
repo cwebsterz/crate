@@ -6,10 +6,46 @@ import { listAlbums } from '../db'
 
 class ListAlbums extends React.Component {
   componentDidMount() {
-    this.props.dispatch(listAlbums)
+    const id = this.props.match.params.id
+    this.props.dispatch(listAlbums(id))
   }
 
   render() {
+    const li = currentUser => album => {
+      return (
+        <article className="dt w-100 bb b--black-05 pb2 pa3 mt2" href="#0">
+          <div className="dtc w3 w4-ns v-mid">
+            <img
+              alt={album.title}
+              src={
+                album.photo
+                  ? album.photo
+                  : `https://placehold.it/200x200/000000/ffffff?text=${album.title}`
+              }
+              className="w-100 db outline black-10"
+            />
+          </div>
+          <div className="dtc v-mid pl3">
+            <h1 className="f6 f5-ns fw6 lh-title black mv0">
+              {album.title}
+            </h1>
+          </div>
+          <div className="dtc v-mid">
+            <div>
+              <a
+                href={`/pages/profiles/${currentUser.profileId}/crate/${album._id}`}
+                className="db grow tc"
+              >
+                <button className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60">
+                  View
+                </button>
+              </a>
+            </div>
+          </div>
+        </article>
+      )
+    }
+
     return (
       <div className="pa2 avenir tc">
         <header className="h3 flex justify-between items-center bg-black-30">
@@ -42,9 +78,7 @@ class ListAlbums extends React.Component {
 
           <article>
             <div className="cf avenir pa2">
-              <div className="fl w-50 w-25-m w-20-l pa2">
-                {map(li, this.props.crate)}
-              </div>
+              {map(li(this.props.currentUser), this.props.crate)}
             </div>
           </article>
         </main>
@@ -52,7 +86,8 @@ class ListAlbums extends React.Component {
           <div className="ml3">
             <Link
               className="link black-60 hover-white"
-              to="/pages/wishlist/albums"
+              to={`/pages/profiles/${this.props.currentUser
+                .profileId}/wishlist`}
             >
               <i className="db tc black-60 hover-white ion-ios-paper" />
             </Link>
@@ -60,15 +95,16 @@ class ListAlbums extends React.Component {
 
           <div>
             <Link
-              className="link black-60 hover-white"
-              to="/pages/search-albums"
+              className="link hover-white black-60"
+              to={`/pages/profiles/${this.props.currentUser
+                .profileId}/search-albums`}
             >
               <i className="db tc black-60 hover-white ion-search" />
             </Link>
           </div>
 
           <div className="mr3">
-            <Link className="link hover-white black-60" to="pages/about">
+            <Link className="link hover-white black-60" to="/pages/about">
               <i className="db tc black-60 hover-white ion-information-circled" />
             </Link>
           </div>
@@ -83,30 +119,9 @@ const connector = connect(mapStateToProps)
 function mapStateToProps(state) {
   console.log('state: ', state)
   return {
-    crate: state.crate
+    crate: state.crate,
+    currentUser: state.currentUser
   }
 }
 
 export default connector(ListAlbums)
-
-function li(albums) {
-  return (
-    <a
-      href={`/pages/view-album/${albums._id}`}
-      key={albums._id}
-      className="db grow tc link"
-    >
-      <img alt="" src={albums.photo} className="w-100 db outline black-10" />
-      <dl className="mt2 f6 lh-copy">
-        <dt className="clip">Title</dt>
-        <dd className="ml0 black truncate w-100">
-          {albums.title}
-        </dd>
-        <dt className="clip">Artist</dt>
-        <dd className="ml0 gray truncate w-100">
-          {albums.artist}
-        </dd>
-      </dl>
-    </a>
-  )
-}

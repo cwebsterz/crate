@@ -10,8 +10,8 @@ import {
 
 class ViewWishlistAlbum extends React.Component {
   componentDidMount() {
-    const albumId = this.props.match.params.id
-    this.props.dispatch(getWishlistAlbum(albumId))
+    const wishlistAlbumId = this.props.match.params.wishlistAlbumId
+    this.props.dispatch(getWishlistAlbum(wishlistAlbumId))
   }
 
   render() {
@@ -46,7 +46,8 @@ class ViewWishlistAlbum extends React.Component {
               <div className="ml3">
                 <Link
                   className="link hover-white black-60"
-                  to="/pages/wishlist/albums"
+                  to={`/pages/profiles/${this.props.currentUser
+                    .profileId}/wishlist`}
                 >
                   <i className="db tc ion-chevron-left" />
                 </Link>
@@ -63,33 +64,35 @@ class ViewWishlistAlbum extends React.Component {
           </div>
 
           <main className="vh-100">
-            <article className="db center mw5 tc black grow">
-              <div className="tc mt2">
-                <img
-                  alt="Album cover"
-                  className="db ba b--black-10"
-                  src={props.wishlistAlbum.photo}
-                />
-              </div>
-            </article>
-            <h4 className="tc">
-              {props.wishlistAlbum.title}
-            </h4>
-
-            <List className="center w-90 ba br2 b--light-gray tc">
-              <li className="h2 bg-light-gray">
-                {props.wishlistAlbum.artist}
-              </li>
-              <li>
-                {props.wishlistAlbum.year}
-              </li>
-              <li className="h2 bg-light-gray">
-                {props.wishlistAlbum.genre}
-              </li>
-              <li>
-                {props.wishlistAlbum.desc}
-              </li>
-            </List>
+            <div className="db center mw5 tc black">
+              <img
+                className="db ba b--black-10"
+                alt="Album Cover"
+                src={props.wishlistAlbum.photo}
+              />
+              <dl className="mt2 f6 lh-copy">
+                <dt className="clip">Title</dt>
+                <dd className="ml0">
+                  {props.wishlistAlbum.title}
+                </dd>
+                <dt className="clip">Artist</dt>
+                <dd className="ml0 gray">
+                  {props.wishlistAlbum.artist}
+                </dd>
+                <dt className="clip">Year</dt>
+                <dd className="ml0">
+                  {props.wishlistAlbum.year}
+                </dd>
+                <dt className="clip">Genre</dt>
+                <dd className="ml0 gray">
+                  {props.wishlistAlbum.genre}
+                </dd>
+                <dt className="clip">Desc</dt>
+                <dd className="ml0">
+                  {props.wishlistAlbum.desc}
+                </dd>
+              </dl>
+            </div>
             <div className="center w-90 flex flex-row justify-between items-center ">
               <Button
                 onClick={props.handleClick(props.history)}
@@ -115,7 +118,8 @@ const connector = connect(mapStateToProps, mapActionsToProps)
 function mapStateToProps(state) {
   console.log('state: ', state)
   return {
-    wishlistAlbum: state.wishlistAlbum
+    wishlistAlbum: state.wishlistAlbum,
+    currentUser: state.currentUser
   }
 }
 

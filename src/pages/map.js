@@ -8,7 +8,11 @@ const MapPage = () => {
       <div>
         <header className="h3 flex justify-between items-center bg-black-30">
           <div className="ml3">
-            <Link className="link" to="/pages/wishlist/albums">
+            <Link
+              className="link hover-white black-60"
+              to={`/pages/profiles/${this.props.currentUser
+                .profileId}/wishlist`}
+            >
               <i className="db tc ion-close black-60 hover-white" />
             </Link>
           </div>
