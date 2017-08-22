@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { List, Button } from 'jrs-react-components'
+import { Button } from 'jrs-react-components'
 import {
   getWishlistAlbum,
   deleteWishlistAlbum,
@@ -63,7 +63,7 @@ class ViewWishlistAlbum extends React.Component {
             </header>
           </div>
 
-          <main className="vh-100">
+          <main className="vh-100 pa4">
             <div className="db center mw5 tc black">
               <img
                 className="db ba b--black-10"
@@ -129,9 +129,7 @@ function mapActionsToProps(dispatch) {
     handleMove: (album, history) => e =>
       dispatch(createAlbumFromWishlist(album, history)),
     handleClick: history => e => {
-      window.confirm('Are you sure?')
-        ? dispatch(deleteWishlistAlbum(history))
-        : console.log('Did no delete item.')
+      dispatch(deleteWishlistAlbum(history))
     }
   }
 }

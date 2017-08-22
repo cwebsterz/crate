@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { List, Button } from 'jrs-react-components'
+import { Button } from 'jrs-react-components'
 import { getAlbum, deleteAlbum } from '../db'
 
 class ViewAlbum extends React.Component {
@@ -34,7 +34,7 @@ class ViewAlbum extends React.Component {
             <div className="mr3" />
           </header>
         </div>
-        <main className="vh-100">
+        <main className="vh-100 pa4">
           <div className="db center mw5 tc black">
             <img
               className="db ba b--black-10"

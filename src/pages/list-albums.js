@@ -13,35 +13,28 @@ class ListAlbums extends React.Component {
   render() {
     const li = currentUser => album => {
       return (
-        <article className="dt w-100 bb b--black-05 pb2 pa3 mt2" href="#0">
-          <div className="dtc w3 w4-ns v-mid">
-            <img
-              alt={album.title}
-              src={
-                album.photo
-                  ? album.photo
-                  : `https://placehold.it/200x200/000000/ffffff?text=${album.title}`
-              }
-              className="w-100 db outline black-10"
-            />
-          </div>
-          <div className="dtc v-mid pl3">
-            <h1 className="f6 f5-ns fw6 lh-title black mv0">
-              {album.title}
-            </h1>
-          </div>
-          <div className="dtc v-mid">
-            <div>
-              <a
-                href={`/pages/profiles/${currentUser.profileId}/crate/${album._id}`}
-                className="db grow tc"
-              >
-                <button className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60">
-                  View
-                </button>
-              </a>
+        <article className="dt w-100 bb b--black-05 pb2 pa3 mt2 justify-between">
+          <a
+            href={`/pages/profiles/${currentUser.profileId}/crate/${album._id}`}
+            className="db dim tc link"
+          >
+            <div className="dtc w3 w4-ns v-mid">
+              <img
+                alt={album.title}
+                src={
+                  album.photo
+                    ? album.photo
+                    : `https://placehold.it/200x200/000000/ffffff?text=${album.title}`
+                }
+                className="w-100 db outline black-10"
+              />
             </div>
-          </div>
+            <div className="dtc v-mid pl3">
+              <h1 className="f6 f5-ns fw6 lh-title black mv0">
+                {album.title}
+              </h1>
+            </div>
+          </a>
         </article>
       )
     }
@@ -52,17 +45,19 @@ class ListAlbums extends React.Component {
           <div className="ml3">
             <Link
               className="link hover-white black-60"
-              to="/pages/view-profile"
+              to={`/pages/profiles/${this.props.currentUser.profileId}`}
             >
               <i className="db tc black-60 hover-white ion-person" />
             </Link>
           </div>
           <div className="f4">
-            <img
-              alt="Logo"
-              className="h3 w3"
-              src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2Fcratelogo.svg?1501867486368"
-            />
+            <Link className="link hover-white black-60" to="/">
+              <img
+                alt="Logo"
+                className="h3 w3"
+                src="https://cdn.glitch.com/011e6829-7f06-454e-8fb9-2891947cf4a7%2Fcratelogo.svg?1501867486368"
+              />
+            </Link>
           </div>
           <div className="mr3">
             <Link

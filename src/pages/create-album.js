@@ -118,6 +118,7 @@ function mapActionsToProps(dispatch) {
   return {
     dispatch,
     handleSubmit: (crateAlbum, history) => e => {
+      e.preventDefault()
       dispatch(createCrateAlbum(crateAlbum, history))
     },
     setTitle: e => doDispatch('TITLE', e.target.value),

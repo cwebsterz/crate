@@ -1,7 +1,11 @@
 import React from 'react'
-import { List, TextField, Button, ImageListItem } from 'jrs-react-components'
+import { List, TextField, Button } from 'jrs-react-components'
 import { connect } from 'react-redux'
-import { searchInput } from '../db'
+import {
+  searchInput,
+  createWishlistAlbumFromSearch,
+  createCrateAlbumFromSearch
+} from '../db'
 import { SEARCH_TEXT } from '../constants'
 import { map } from 'ramda'
 import { Link } from 'react-router-dom'
@@ -73,6 +77,14 @@ function mapStateToProps(state) {
 function mapActionsToProps(dispatch) {
   return {
     dispatch,
+    handleWishlistClick: (wishlistAlbum, history) => e => {
+      e.preventDefault()
+      dispatch(createWishlistAlbumFromSearch(wishlistAlbum, history))
+    },
+    handleCrateClick: (crateAlbum, history) => e => {
+      e.preventDefault()
+      dispatch(createCrateAlbumFromSearch(crateAlbum, history))
+    },
     handleSubmit: searchAlbum => e => {
       e.preventDefault()
       dispatch(searchInput(searchAlbum))
@@ -86,6 +98,7 @@ const li = props => album => {
     <article className="dt w-100 bb b--black-05 pb2 pa3 mt2" href="#0">
       <div className="dtc w3 w4-ns v-mid">
         <img
+          alt={album.name}
           src={album.thumb}
           className="ba b--black-10 db br2 w3 w4-ns h3 h4-ns"
         />
@@ -99,7 +112,7 @@ const li = props => album => {
         <div>
           <button
             className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
-            onClick={e => e}
+            onClick={props.handleWishlistClick(album, props.history)}
           >
             + Wishlist
           </button>
@@ -107,7 +120,7 @@ const li = props => album => {
         <div>
           <button
             className="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60"
-            onClick={e => e}
+            onClick={props.handleCrateClick(album, props.history)}
           >
             + Crate
           </button>
